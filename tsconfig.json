@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esNext",
+    "module": "nodeNext",
+    "moduleResolution": "nodeNext",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "noEmitOnError": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
