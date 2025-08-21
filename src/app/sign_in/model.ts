@@ -8,6 +8,7 @@ const schema_user = new mongoose.Schema<User>({
 
     email: String,
     password: String,
+    age: Number,
     createdAt: Date,
     updatedAt: Date,
     isActive: Boolean,
@@ -15,16 +16,15 @@ const schema_user = new mongoose.Schema<User>({
     votersID: String
 });
 
-
 schema_user.pre("save", async function (this: User & Document){
 
     if(this.isNew){
 
         const model_user = this.model("users");
-        const isPresent = await model_user.findOne({email: this.email});
+        const isPresent = await model_user.findOne({email: this.email}) && true;
         if(isPresent){
 
-            throw new Error("users with email already exists.")
+            throw new Error("user with email already exists.")
         }
     }
 });
@@ -42,9 +42,18 @@ schema_user.pre("save", async function(this: User & Document){
         }catch(err){
 
             throw new Error(String(err));
-        }
-    }
-})
+        };
 
+    }
+});
+
+schema_user.pre("save", function(this: User & Document){
+
+    if(this.isModified()){
+
+        this.updatedAt = new Date(Date.now())
+    }
+
+})
 
 export default (await authDb).model<User>("users", schema_user);
