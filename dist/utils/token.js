@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+import jwt, {} from 'jsonwebtoken';
+import _dotenv from 'dotenv';
 const generate = (payload, secret_key, opts) => {
     const { sub, jti } = payload;
     const { expiresIn } = opts;

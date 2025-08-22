@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import _dotenv from 'dotenv';
 const connections_cached = new Map();
 const getDbServer = async function (uri, opts) {
     const isPresent = connections_cached.has(uri);
@@ -8,7 +9,7 @@ const getDbServer = async function (uri, opts) {
         connections_cached.set(uri, new_connection);
         req_connection
             .then((conn) => new_connection.conn = conn)
-            .catch((err) => {
+            .catch((_err) => {
             connections_cached.delete(uri);
             console.log(`request faild: can not connect to ${uri}`);
         });

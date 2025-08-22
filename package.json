@@ -5,7 +5,8 @@
   "main": "dist",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon -r dotenv/config dist/index.js"
+    "production": "nodemon -r dotenv/config dist/index.js",
+    "dev": "npx tsx watch -r dotenv/config  src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +18,11 @@
     "@types/module-alias": "^2.0.4",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^24.3.0",
+    "@types/nodemailer": "^7.0.1",
     "@types/ws": "^8.18.1",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2"
   },
   "dependencies": {
@@ -30,6 +33,7 @@
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "mongoose": "^8.17.2",
+    "nodemailer": "^7.0.5",
     "redis": "^5.8.1",
     "ws": "^8.18.3"
   }

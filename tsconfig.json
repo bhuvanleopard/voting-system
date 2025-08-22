@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esNext",
+    // "target": "esNext", // latest but not widely supported
+    "target": "es2022",
+    "lib": ["ES2022"],
     "module": "nodeNext",
     "moduleResolution": "nodeNext",
     "outDir": "./dist",
@@ -10,7 +12,8 @@
     "strict": true,
     "resolveJsonModule": true,
     "declaration": false,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["src/**/*.ts", "types.d.ts"],
   "exclude": ["node_modules"]

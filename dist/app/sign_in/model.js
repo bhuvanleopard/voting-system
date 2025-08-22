@@ -1,6 +1,9 @@
-import mongoose from 'mongoose';
+import {} from './types.js';
+import mongoose, {} from 'mongoose';
+import _dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import mongodb from '../../utils/mongodb.js';
+import mailer from '../../utils/mailer.js';
 const schema_user = new mongoose.Schema({
     email: String,
     password: String,
@@ -45,6 +48,12 @@ schema_user.pre("save", function () {
         this.updatedAt = new Date(Date.now());
     }
 });
+// schema_user.post("save", async function(this: User & Document){
+//     await mailer.send(mailer.defaultTransporter, `${this.email}`, "verification email again", "<input value='enter your code'>")
+//     if(this.isModified("email") || this.isNew){
+//     await mailer.send(mailer.defaultTransporter, `${this.email}`, "insider verification email again", "<input value='enter your code'>")
+//     }
+// })
 const model_user_server = await mongodb.getDbServer(`${process.env.MONGO_DB_URI_USERS}`);
 const model_user_db = await mongodb.getDb(model_user_server, `${process.env.MONGO_DB_USERS}`);
 const model_user = model_user_db.model(`${process.env.MONGO_DB_MODEL_USERS}`, schema_user);

@@ -1,5 +1,5 @@
 import { error } from "console";
-import mongoose from "mongoose";
+import mongoose, {} from "mongoose";
 ;
 const schema_hobby = new mongoose.Schema({
     name: {
