@@ -1,8 +1,8 @@
-import {authDb} from '../../config/mongodb.js';
 import { type User } from './types.js';
 import mongoose, {type Document} from 'mongoose';
 import _dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import mongodb from '../../utils/mongodb.js';
 
 const schema_user = new mongoose.Schema<User>({
 
@@ -25,6 +25,14 @@ schema_user.pre("save", async function (this: User & Document){
         if(isPresent){
 
             throw new Error("user with email already exists.")
+        
+        }else{
+
+            this.isActive = true;
+            this.createdAt = new Date(Date.now());
+            this.isVerified = false;
+            this.votersID = "unknown"
+
         }
     }
 });
@@ -56,4 +64,8 @@ schema_user.pre("save", function(this: User & Document){
 
 })
 
-export default (await authDb).model<User>("users", schema_user);
+const model_user_server  = await mongodb.getDbServer(`${process.env.MONGO_DB_URI_USERS}`);
+const model_user_db = await mongodb.getDb(model_user_server, `${process.env.MONGO_DB_USERS}`);
+const model_user = model_user_db!.model(`${process.env.MONGO_DB_MODEL_USERS}`, schema_user);
+export default model_user;
+
