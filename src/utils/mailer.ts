@@ -20,11 +20,11 @@ const createTransporter = function(host: string, port: number, secure: boolean, 
 
 };
 
+const defaultTransporter = createTransporter(`${process.env.NODE_MAILER_HOST}`, 465, true, "gmail", `${process.env.NODE_MAILER_USER}`, `${process.env.NODE_MAILER_PASS}`)
 
+const send = async function(client: string, subject: string, htmlContent: string, transporter?: Transporter, senders_mail?: string):Promise<void>{
 
-const send = async function(transporter: Transporter, client: string, subject: string, htmlContent: string, senders_mail?: string):Promise<void>{
-
-    await transporter.sendMail({
+    await (transporter || defaultTransporter ).sendMail({
 
         from: senders_mail || `${process.env.NODE_MAILER_USER}`,
         to: client, 
@@ -34,6 +34,5 @@ const send = async function(transporter: Transporter, client: string, subject: s
     });
 }
 
-const defaultTransporter: Transporter = createTransporter(`${process.env.NODE_MAILER_HOST}`, 465, true, "gmail", `${process.env.NODE_MAILER_USER}`, `${process.env.NODE_MAILER_PASS}`)
 const mailer = {createTransporter, send, defaultTransporter};
 export default mailer;

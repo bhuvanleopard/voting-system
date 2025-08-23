@@ -1,7 +1,7 @@
 import jwt, {type JwtPayload, type SignOptions, type Secret} from 'jsonwebtoken';
 import _dotenv from 'dotenv';
 
-const generate = (payload: JwtPayload, secret_key: Secret, opts: SignOptions):void | string=>{
+const generate = (payload: JwtPayload, secret_key: Secret, opts: SignOptions):string=>{
 
     const {sub, jti} = payload;
     const {expiresIn} = opts;
@@ -23,7 +23,11 @@ const verify = (req_token: string, secret_key: Secret):null | JwtPayload=>{
     };
 };
 
+const passwordResetToken = (email: string)=>{
 
+    return generate({sub: email}, `${process.env.ACCESS_TOKEN_KEY}`, {expiresIn: "7m"})
+} 
 
-export default { generate, verify};
+const token = { generate, verify, passwordResetToken}
+export default token;
 

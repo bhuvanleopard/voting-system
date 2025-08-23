@@ -29,4 +29,5 @@ const number = (req_number: number | -1, low: number, high: number):boolean=>{
 };
 
 
-export default {email, password, string, username, number}
+const validate = {email, password, string, username, number};
+export default validate;
