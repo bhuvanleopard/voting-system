@@ -1,5 +1,5 @@
 import express, {type Express} from 'express';
-import route from './app/sign_in/route.js';
+import route from './app/auth/route.js';
 
 const app: Express = express();
 app.use(express.json());

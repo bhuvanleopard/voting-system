@@ -27,15 +27,8 @@ schema_user.pre("save", async function (this: User & Document){
 
             throw new Error("user with email already exists.")
         
-        }else{
-
-            this.isActive = true;
-            this.createdAt = new Date(Date.now());
-            this.isVerified = false;
-            this.votersID = "unknown"
-
-        }
-    }
+        };
+    };
 });
 
 schema_user.pre("save", async function(this: User & Document){
@@ -64,19 +57,6 @@ schema_user.pre("save", function(this: User & Document){
     }
 
 });
-
-// schema_user.post("save", async function(this: User & Document){
-
-//     await mailer.send(mailer.defaultTransporter, `${this.email}`, "verification email again", "<input value='enter your code'>")
-        
-//     if(this.isModified("email") || this.isNew){
-
-
-//     await mailer.send(mailer.defaultTransporter, `${this.email}`, "insider verification email again", "<input value='enter your code'>")
-     
-        
-//     }
-// })
 
 const model_user_server  = await mongodb.getDbServer(`${process.env.MONGO_DB_URI_USERS}`);
 const model_user_db = await mongodb.getDb(model_user_server, `${process.env.MONGO_DB_USERS}`);
