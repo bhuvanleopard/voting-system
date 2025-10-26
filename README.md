@@ -34,8 +34,8 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/your-username/live-voting-project.git](https://github.com/your-username/live-voting-project.git)
-    cd live-voting-project
+    git clone [https://github.com/your-username/voting-system.git](https://github.com/your-username/voting-system.git)
+    cd voting-system
     ```
 
 2.  **Install dependencies:**
