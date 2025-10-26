@@ -2,10 +2,6 @@
 
 > A React + TypeScript component demonstrating the frontend for a live polling system. This UI is designed to handle real-time data synchronization via WebSockets, providing instantaneous poll results and dynamic data visualization.
 
-![Live Voting Demo](https://via.placeholder.com/800x400.png?text=Add+a+Demo+GIF+or+Screenshot+Here)
-
-*(Suggestion: Record a short GIF showing the charts "animating" or votes being cast and replace the link above.)*
-
 ## ✨ Core Features
 
 This project is a showcase of a high-performance, real-time application frontend:
@@ -34,7 +30,7 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/your-username/voting-system.git](https://github.com/your-username/voting-system.git)
+    git clone [https://github.com/bhuvanleopard/voting-system.git](https://github.com/bhuvanleopard/voting-system.git)
     cd voting-system
     ```
 
